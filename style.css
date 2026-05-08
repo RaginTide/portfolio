@@ -212,25 +212,65 @@ body{
     }
 }
 
+.hero .description, 
+.hero .hero-buttons {
+    transition-delay: 0.1s; 
+}
+
 /* ABOUT */
 
 .about{
+    position:relative;
+
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:60px;
-    padding:120px 10%;
+    gap:80px;
+
+    padding:140px 10%;
+
     border-top:1px solid #222;
+
+    overflow:hidden;
+}
+
+.about::before{
+    content:"";
+
+    position:absolute;
+
+    width:600px;
+    height:600px;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,255,255,0.05),
+        transparent 70%
+    );
+
+    top:-250px;
+    left:-250px;
+
+    pointer-events:none;
 }
 
 .about h2{
-    font-size:60px;
-    margin-bottom:30px;
+    font-size:70px;
+
+    margin-bottom:35px;
+
+    text-shadow:
+    0 0 30px rgba(255,255,255,0.08);
 }
 
 .about p{
     color:#bdbdbd;
-    line-height:1.8;
-    font-size:18px;
+
+    line-height:2;
+
+    font-size:20px;
+
+    max-width:700px;
 }
 
 .skills{
@@ -240,18 +280,48 @@ body{
 }
 
 .skill-card{
-    border:1px solid #333;
-    padding:40px;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    background:rgba(255,255,255,0.03);
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+
+    padding:42px;
+
     text-align:center;
-    border-radius:25px;
-    transition:0.3s;
+
+    border-radius:28px;
+
+    transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+
     cursor:pointer;
+
+    box-shadow:
+    0 0 0 rgba(255,255,255,0);
 }
 
 .skill-card:hover{
-    background:white;
-    color:black;
-    transform:scale(1.05);
+
+    transform:
+    translateY(-6px)
+    scale(1.02);
+
+    border-color:
+    rgba(255,255,255,0.2);
+
+    background:
+    rgba(255,255,255,0.06);
+
+    box-shadow:
+    0 12px 40px rgba(255,255,255,0.06);
+
+    color:white;
 }
 
 /* PROJECTS */
@@ -470,15 +540,19 @@ footer{
 .hidden-up,
 .hidden-left,
 .hidden-right,
-.hidden-scale{
-    opacity:0;
-    transition:
-    opacity 0.8s ease,
-    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+.hidden-scale {
+    opacity: 0;
+    /* Use a 'quintic' or 'expo' curve for that premium feel */
+    transition: 
+        opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    
+    will-change: transform, opacity;
+    pointer-events: none; /* Prevent elements from blocking clicks while invisible */
 }
 
 .hidden-up{
-    transform:translateY(100px);
+    transform:translateY(30px);
 }
 
 .hidden-left{
@@ -493,9 +567,10 @@ footer{
     transform:scale(0.7);
 }
 
-.show{
-    opacity:1;
-    transform:translate(0,0) scale(1);
+.show {
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) scale(1) !important;
+    pointer-events: all;
 }
 
 /* STAGGER EFFECT */
