@@ -166,6 +166,7 @@ body{
     margin-top:40px;
     flex-wrap:wrap;
     z-index:2;
+    justify-content: center;
 }
 
 .btn-outline,
@@ -515,23 +516,80 @@ footer{
 
 @media(max-width:900px){
 
-    .hero h1{
-        font-size:70px;
+    /* HERO SECTION */
+    .hero h1 {
+        font-size: 70px;
     }
 
-    .about{
-        grid-template-columns:1fr;
+    .hero-buttons {
+        flex-direction: column; 
+        align-items: center;    
     }
 
+    .hero-buttons a {
+        width: 100%;            
+        max-width: 280px;       
+    }
+
+    /* ABOUT SECTION */
+    .about {
+        grid-template-columns: 1fr; /* Stack text and skills */
+        padding: 80px 5%;          /* Reduce huge vertical padding */
+        text-align: center;        /* Center headings and text */
+        gap: 50px;
+    }
+
+    .about-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;       /* Centers the paragraph horizontally */
+    }
+
+    .about p {
+        font-size: 18px;
+        margin: 0 auto;            /* Ensures paragraph block is centered */
+    }
+
+    /* SKILL CARDS */
+    .skills {
+        grid-template-columns: 1fr; /* Stack skills 1-by-1 for clarity */
+        width: 100%;
+        max-width: 400px;          /* Prevents cards from being too wide */
+        margin: 0 auto;            /* Centers the skill grid */
+    }
+
+    .skill-card {
+        padding: 25px;             /* Smaller padding so they don't look bulky */
+        border-radius: 20px;
+    }
+
+    /* PROJECTS SECTION */
+    .projects {
+        padding: 80px 5%;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr; /* Single column for projects */
+        justify-items: center;      /* Centers the cards in the grid */
+    }
+
+    .project-card {
+        width: 100%;
+        max-width: 400px;           /* Consistent width with skill cards */
+        text-align: center;         /* Centers project text and button */
+    }
+
+    /* GENERAL HEADINGS */
     .projects h2,
     .about h2,
-    .contact h2{
-        font-size:45px;
+    .contact h2 {
+        font-size: 40px;
+        margin-bottom: 40px;
     }
 
-    .banner-group span{
-        font-size:40px;
-        padding-right:80px;
+    .banner-group span {
+        font-size: 40px;
+        padding-right: 80px;
     }
 }
 
