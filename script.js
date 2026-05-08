@@ -32,21 +32,22 @@ function startAnimations() {
     );
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            // entry.isIntersecting is true when it enters the viewport
-            if (entry.isIntersecting) {
-                entry.target.classList.add("show");
-            } else {
-                // Remove the class when it leaves the viewport to allow replay
-                entry.target.classList.remove("show");
-            }
-        });
-    }, {
-        // Lower threshold (0.1) ensures it triggers as soon as a bit of it appears
-        threshold: 0.1,
-        // rootMargin '0px' is more reliable for bottom-of-the-page sections
-        rootMargin: "0px"
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        } else {
+            // Only remove if it's REALLY gone from the screen
+            // This prevents the movement from triggering a removal
+            entry.target.classList.remove("show");
+        }
     });
+}, {
+    threshold: 0.1,
+    // Adds a 20px 'margin' to the detection area. 
+    // This stops the jitter because the 30px move won't 
+    // immediately kick the element out of the 'active' zone.
+    rootMargin: "20px 0px 20px 0px" 
+});
 
     elements.forEach((el) => {
         observer.observe(el);
