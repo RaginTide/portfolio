@@ -62,7 +62,43 @@ form.addEventListener("submit", function(e){
 
     e.preventDefault();
 
-    alert("Message sent successfully!");
+    const button = form.querySelector("button");
+
+    button.innerText = "Sending...";
+    button.disabled = true;
+
+    emailjs.sendForm(
+        "service_k14uv4r",
+        "template_ds9wg6a",
+        this
+    )
+
+    .then(() => {
+
+        button.innerText = "Message Sent!";
+        form.reset();
+
+        setTimeout(() => {
+
+            button.innerText = "Send Message";
+            button.disabled = false;
+
+        }, 2000);
+
+    })
+
+    .catch(() => {
+
+        button.innerText = "Failed!";
+        
+        setTimeout(() => {
+
+            button.innerText = "Send Message";
+            button.disabled = false;
+
+        }, 2000);
+
+    });
 
 });
 
@@ -166,3 +202,77 @@ function animateCursor() {
 
 animateCursor();
 
+
+
+/* PROJECT HOVER SLIDESHOW */
+
+document.querySelectorAll(".project-card").forEach(card => {
+
+    const images = card.querySelectorAll(".project-slideshow img");
+
+    let current = 1;
+    let interval;
+    let hoverTimeout;
+
+    function startSlideshow() {
+
+        clearTimeout(hoverTimeout);
+
+        card.classList.add("hovering");
+
+        // Wait for main image expansion first
+        hoverTimeout = setTimeout(() => {
+
+            card.classList.add("slideshow-active");
+
+            if (images.length > 1) {
+
+                images[current].classList.add("active");
+
+                interval = setInterval(() => {
+
+                    images[current].classList.remove("active");
+
+                    current++;
+
+                    if(current >= images.length){
+                        current = 1;
+                    }
+
+                    images[current].classList.add("active");
+
+                }, 2500);
+
+            }
+
+        }, 900); // expansion duration before slideshow starts
+    }
+
+    function stopSlideshow() {
+
+        clearInterval(interval);
+
+        clearTimeout(hoverTimeout);
+
+        images.forEach(img => {
+            img.classList.remove("active");
+        });
+
+        // Remove slideshow first
+        card.classList.remove("slideshow-active");
+
+        // Keep expanded state briefly
+        setTimeout(() => {
+
+            card.classList.remove("hovering");
+
+        }, 150);
+
+        current = 1;
+    }
+
+    card.addEventListener("mouseenter", startSlideshow);
+
+    card.addEventListener("mouseleave", stopSlideshow);
+
+});
