@@ -448,13 +448,17 @@ body{
 /* FADE MAIN IMAGE ONLY AFTER EXPANSION */
 
 .project-card.slideshow-active .project-slideshow img:first-child{
-    opacity:0;
+    opacity:0 !important;
+    visibility:hidden;
+    transition:
+    opacity 0.4s ease;
 }
 
 /* SLIDESHOW IMAGES */
 
 .project-slideshow img.active:not(:first-child){
     opacity:1;
+    visibility:visible;
     z-index:4;
 
     animation:expandSlowly 2.5s ease-out forwards;
