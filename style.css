@@ -855,3 +855,20 @@ footer{
         opacity:0;
     }
 }
+
+
+/* DISABLE CUSTOM CURSOR ON MOBILE */
+
+@media (max-width: 900px){
+
+    .cursor-dot{
+        display:none !important;
+    }
+
+    body,
+    .custom-cursor,
+    .custom-cursor *{
+        cursor:auto !important;
+    }
+
+}
