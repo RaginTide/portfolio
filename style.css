@@ -872,3 +872,72 @@ footer{
     }
 
 }
+
+
+/* MOBILE FIXES */
+
+@media (max-width:900px){
+
+    html,
+    body{
+        overflow-x:hidden !important;
+        width:100%;
+    }
+
+    .hero,
+    .about,
+    .projects,
+    .contact{
+        overflow:hidden;
+    }
+
+    .project-grid{
+        width:100%;
+        justify-items:center;
+    }
+
+    .project-card{
+        width:100%;
+        max-width:380px;
+        overflow:hidden;
+    }
+
+    .project-image{
+        overflow:hidden !important;
+        border-radius:20px;
+    }
+
+    .project-slideshow{
+        overflow:hidden;
+        border-radius:20px;
+    }
+
+    .project-slideshow img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+    }
+
+    /* STOP HUGE MOBILE EXPANSION */
+
+    .project-card.hovering .project-slideshow img:first-child{
+        transform:scale(1.03) translateY(-2px);
+    }
+
+    .project-slideshow img.active:not(:first-child){
+        animation:mobileExpand 2.5s ease-out forwards;
+    }
+
+    @keyframes mobileExpand{
+
+        from{
+            transform:scale(1);
+        }
+
+        to{
+            transform:scale(1.05);
+        }
+
+    }
+
+}
