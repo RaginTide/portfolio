@@ -229,10 +229,12 @@ document.querySelectorAll(".project-card").forEach(card => {
             if (images.length > 1) {
 
                 images[current].classList.add("active");
+                images[current].style.visibility = "visible";
 
                 interval = setInterval(() => {
 
                     images[current].classList.remove("active");
+                    images[current].style.visibility = "hidden";
 
                     current++;
 
@@ -241,6 +243,7 @@ document.querySelectorAll(".project-card").forEach(card => {
                     }
 
                     images[current].classList.add("active");
+                    images[current].style.visibility = "visible";
 
                 }, 2500);
 
@@ -256,17 +259,15 @@ document.querySelectorAll(".project-card").forEach(card => {
 
         clearTimeout(hoverTimeout);
 
-        images.forEach((img, index) => {
+       images.forEach((img, index) => {
 
-            img.classList.remove("active");
+    img.classList.remove("active");
 
-            // Restore only main image
-            if(index === 0){
-                img.style.opacity = "1";
-            }
+    if(index !== 0){
+        img.style.visibility = "hidden";
+    }
 
-        });
-
+});
         card.classList.remove("slideshow-active");
         card.classList.remove("hovering");
 
