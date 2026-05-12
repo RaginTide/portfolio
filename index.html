@@ -89,60 +89,104 @@
 
     <!-- PROJECTS -->
 
-    <section class="projects" id="projects">
+   <section class="projects" id="projects">
 
-        <h2 class="hidden-up">Featured Projects</h2>
+    <h2 class="hidden-up">Featured Projects</h2>
 
-        <div class="project-grid">
+    <div class="project-grid">
 
-            <div class="project-card hidden-up">
+        <!-- OEPS -->
 
-                <div class="project-image">
-                    OEPS
+        <div class="project-card hidden-up">
+
+            <div class="project-image">
+
+                <div class="project-slideshow">
+
+                    <img src="images/oepsmain.png" class="active">
+                    <img src="images/oeps1.png">
+                    <img src="images/oeps2.png">
+                    <img src="images/oeps3.png">
+                    <img src="images/oeps4.jpg">
+                    <img src="images/oeps5.png">
+                    <img src="images/oeps6.png">
+                    <img src="images/oeps7.png">
+                    <img src="images/oeps8.png">
+
                 </div>
 
-                <p>
-                    AI-powered online examination monitoring system
-                    with gaze tracking and anti-cheating features.
-                </p>
-
-                <button>Explore</button>
+                
 
             </div>
 
-            <div class="project-card hidden-up">
+            <p>
+               AI-powered online examination platform with
+    gaze tracking and anti-cheating features.
+            </p>
 
-                <div class="project-image">
-                    G'Room
-                </div>
-
-                <p>
-                    MediaPipe + MQTT powered smart room controller
-                    using real-time hand gestures.
-                </p>
-
-                <button>Explore</button>
-
-            </div>
-
-            <div class="project-card hidden-up">
-
-                <div class="project-image">
-                    Accident Detection AI
-                </div>
-
-                <p>
-                    TensorFlow-based real-time accident detection
-                    system using CCTV/video streams.
-                </p>
-
-                <button>Explore</button>
-
-            </div>
+            <div class="ripple-dot"></div>
 
         </div>
 
-    </section>
+        <!-- GROOM -->
+
+        <div class="project-card hidden-up">
+
+            <div class="project-image">
+
+                <div class="project-slideshow">
+
+                    <img src="images/groommain.png" class="active">
+                    <img src="images/groom1.png">
+                    <img src="images/groom2.png">
+                    <img src="images/groom3.png">
+                    <img src="images/groom4.png">
+
+                </div>
+
+                
+
+            </div>
+
+            <p>
+                MediaPipe + MQTT powered smart room controller
+                using real-time hand gestures.
+            </p>
+
+            <div class="ripple-dot"></div>
+
+        </div>
+
+<!-- FILESAFE -->
+
+<div class="project-card hidden-up">
+
+    <div class="project-image">
+
+        <div class="project-slideshow">
+
+            <img src="images/filesafemain.png" class="active">
+            <img src="images/filesafe1.png">
+            <img src="images/filesafe2.png">
+            <img src="images/filesafe3.png">
+            <img src="images/filesafe4.png">
+
+        </div>
+
+       
+
+    </div>
+
+    <p>
+        Secure file encryption and protected
+        decryption platform for documents.
+    </p>
+
+    <div class="ripple-dot"></div>
+
+</div>
+
+</section>
 
     <!-- SCROLL BANNER -->
 
@@ -186,19 +230,34 @@
             Have a project idea or collaboration opportunity?
         </p>
 
-        <form id="contact-form">
+       <form id="contact-form">
 
-            <input type="text" placeholder="Your Name" required>
+    <input 
+        type="text" 
+        name="name" 
+        placeholder="Your Name" 
+        required
+    >
 
-            <input type="email" placeholder="Your Email" required>
+    <input 
+        type="email" 
+        name="email" 
+        placeholder="Your Email" 
+        required
+    >
 
-            <textarea rows="6" placeholder="Your Message" required></textarea>
+    <textarea 
+        name="message" 
+        rows="6" 
+        placeholder="Your Message" 
+        required
+    ></textarea>
 
-            <button type="submit">
-                Send Message
-            </button>
+    <button type="submit">
+        Send Message
+    </button>
 
-        </form>
+</form>
 
     </section>
 
@@ -211,5 +270,12 @@
     <script src="script.js"></script>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+    emailjs.init("eLS9HgYi-Au3tmre-");
+</script>
+
+<script src="script.js"></script>
 </body>
 </html>
