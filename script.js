@@ -204,7 +204,7 @@ animateCursor();
 
 
 
-/* PROJECT HOVER SLIDESHOW */
+/* PROJECT HOVER + MOBILE AUTO SLIDESHOW */
 
 document.querySelectorAll(".project-card").forEach(card => {
 
@@ -214,13 +214,14 @@ document.querySelectorAll(".project-card").forEach(card => {
     let interval;
     let hoverTimeout;
 
+    const isMobile = window.innerWidth <= 900;
+
     function startSlideshow() {
 
         clearTimeout(hoverTimeout);
 
         card.classList.add("hovering");
 
-        // Wait for main image expansion first
         hoverTimeout = setTimeout(() => {
 
             card.classList.add("slideshow-active");
@@ -245,7 +246,8 @@ document.querySelectorAll(".project-card").forEach(card => {
 
             }
 
-        }, 900); // expansion duration before slideshow starts
+        }, 900);
+
     }
 
     function stopSlideshow() {
@@ -254,25 +256,59 @@ document.querySelectorAll(".project-card").forEach(card => {
 
         clearTimeout(hoverTimeout);
 
-        images.forEach(img => {
+        images.forEach((img, index) => {
+
             img.classList.remove("active");
+
+            // Restore only main image
+            if(index === 0){
+                img.style.opacity = "1";
+            }
+
         });
 
-        // Remove slideshow first
         card.classList.remove("slideshow-active");
-
-        // Keep expanded state briefly
-        setTimeout(() => {
-
-            card.classList.remove("hovering");
-
-        }, 150);
+        card.classList.remove("hovering");
 
         current = 1;
     }
 
-    card.addEventListener("mouseenter", startSlideshow);
+    /* DESKTOP */
 
-    card.addEventListener("mouseleave", stopSlideshow);
+    if (!isMobile){
+
+        card.addEventListener("mouseenter", startSlideshow);
+
+        card.addEventListener("mouseleave", stopSlideshow);
+
+    }
+
+    /* MOBILE */
+
+    else{
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if(entry.isIntersecting){
+
+                    startSlideshow();
+
+                } else {
+
+                    stopSlideshow();
+
+                }
+
+            });
+
+        }, {
+            threshold:0.6
+        });
+
+        observer.observe(card);
+
+    }
 
 });
